@@ -1,4 +1,4 @@
-from data_manager import add_bike, view_all_bikes  # Imports function in data manager file to save bikes into CSV file
+from data_manager import add_bike, view_all_bikes  # Imports functions from data manager, and works with CSV file.
 
 def display_menu(user_name):
     print ("-------------------------")
@@ -40,7 +40,23 @@ def main():
         elif choice == "2":
             print("Log service record selected")
         elif choice == "3":
-            print("Search bike by registration selected")
+            print("\n--- SEARCH BIKE ---")
+
+            search_reg = input("Enter registration: ").strip().upper() # Prompt asks user for registration for the search
+
+            bikes = view_all_bikes() # Gathers all bikes from the csv file
+
+            found = False  # Flag to track if we found a match
+
+            for i in range(1, len(bikes)):
+                if bikes[i][0] == search_reg:  # Compares registration
+                    print("Found:", bikes[i][0], "|", bikes[i][1], "|", bikes[i][2], "|", bikes[i][3])
+                    found = True
+                    break 
+
+            if not found:
+                print("No bike found with that registration.")
+
         elif choice == "4":
             print("\n--- VIEW ALL BIKES ---")
 
