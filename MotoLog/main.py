@@ -1,4 +1,4 @@
-from data_manager import add_bike  # Imports function in data manager file to save bikes into CSV file
+from data_manager import add_bike, view_all_bikes  # Imports function in data manager file to save bikes into CSV file
 
 def display_menu(user_name):
     print ("-------------------------")
@@ -42,7 +42,17 @@ def main():
         elif choice == "3":
             print("Search bike by registration selected")
         elif choice == "4":
-            print("View all bikes selected")
+            print("\n--- VIEW ALL BIKES ---")
+
+            bikes = view_all_bikes() # Calls function to pull all bikes in CSV file.
+
+            if len(bikes) <= 1: # If CSV file only has the header, or is empty, prints below message.
+                print("No bikes found.")
+
+            else:
+                for i in range(1, len(bikes)): # List starts from row 1, so that the header row is skipped.
+                    print("Registration:", bikes[i][0], "| Brand:", bikes[i][1], "| Model:", bikes[i][2], "| Mileage:", bikes[i][3])
+                    
         elif choice == "5":
             print("Update mileage selected")
         elif choice == "6":
