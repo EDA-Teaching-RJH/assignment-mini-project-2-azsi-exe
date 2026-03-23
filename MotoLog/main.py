@@ -1,3 +1,5 @@
+from data_manager import add_bike  # Imports function in data manager file to save bikes into CSV file
+
 def display_menu(user_name):
     print ("-------------------------")
     print("WELCOME TO MOTOLOG")
@@ -40,7 +42,16 @@ def main():
         choice = display_menu(name)
 
         if choice == "1":
-            print("Add motorbike selected")
+            print("\n--- ADD MOTORBIKE ---")
+            registration = input("Enter registration: ").strip().upper()  # .strip() = Removes any spaces, .upper() = makes it uppercase
+            brand = input("Enter brand: ").strip()
+            model = input("Enter model: ").strip()
+            mileage = input("Enter mileage: ").strip()
+
+            add_bike(registration, brand, model, mileage) # Calls add bike function to save bike
+
+            print("Motorbike added sucessfully!")
+
         elif choice == "2":
             print("Log service record selected")
         elif choice == "3":
