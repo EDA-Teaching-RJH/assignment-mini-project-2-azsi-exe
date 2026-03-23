@@ -16,3 +16,33 @@ def display_menu(user_name):
 
     option = input("Select option: ").strip() # .strip() = removes any accidental spaces
     return option
+
+def main():
+    name = input("Enter your name: ")
+    print(f"\nWelcome, {name}!")
+
+    while True:
+        choice = display_menu(name)
+
+        if choice == "1":
+            print("Add motorbike selected")
+        elif choice == "2":
+            print("Log service record selected")
+        elif choice == "3":
+            print("Search bike by registration selected")
+        elif choice == "4":
+            print("View all bikes selected")
+        elif choice == "5":
+            print("Update mileage selected")
+        elif choice == "6":
+            print("Delete bike selected")
+        elif choice == "7":
+            print("Service analytics selected")
+        elif choice == "8":
+            print("Goodbye!")
+            break
+        else:
+            print("Invalid choice. Please try again.")
+
+if __name__ == "__main__":
+    main()
