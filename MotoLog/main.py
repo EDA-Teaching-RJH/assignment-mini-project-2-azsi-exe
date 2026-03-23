@@ -19,21 +19,6 @@ def display_menu(user_name):
     option = input("Select option: ").strip() # .strip() = removes any accidental spaces
     return option
 
-def add_bike(registrations, brands, models, mileages): # This function allows usder to add bikes to MotoLog
-    print("--- ADD MOTORBIKE ---")
-
-    registration = input("Registration: ").strip().upper()
-    brand = input("Brand: ").strip().capitalize()
-    model = input("Model: ").strip()
-    mileage = input("Mileage: ").strip()
-
-    registrations.append(registration)
-    brands.append(brand)
-    models.append(model)
-    mileages.append(mileage)
-
-    print("Motorbike added successfully.")
-
 def main():
     name = input("Enter your name: ") # Asks user for username at the beginning of the program
     print(f"\nWelcome, {name}!")
