@@ -99,7 +99,7 @@ def main():
 
             registration = input("Enter registration: ").strip().upper()
 
-            bikes = get_all_bikes()
+            bikes = view__all_bikes()
             found = False
 
             for i in range(1, len(bikes)): # Find bike details and display for user to confirm
