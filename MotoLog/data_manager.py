@@ -15,3 +15,25 @@ def view_all_bikes(): # This function gathers all bikes in the CSV file
             bikes.append(row)  # Adds each row into the list
 
     return bikes
+
+def update_mileage(registration, new_mileage): # This function updates the mileage of a bike.
+    bikes = []  # List will store all the rows from the CSV file
+    found = False 
+
+    with open("MotoLog/bikelog.csv", "r") as file:
+        reader = csv.reader(file)
+
+        for row in reader: # Checks if this row matches the registration number
+            if row[0] == registration:
+                row[3] = new_mileage  # Changes the mileage column
+                found = True 
+
+            bikes.append(row)
+
+    with open("MotoLog/bikelog.csv", "w", newline="") as file: 
+        writer = csv.writer(file)
+
+        for row in bikes: # Writes every row back into the CSV file
+            writer.writerow(row)
+
+    return found

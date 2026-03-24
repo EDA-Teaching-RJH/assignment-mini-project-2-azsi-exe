@@ -1,4 +1,4 @@
-from data_manager import add_bike, view_all_bikes  # Imports functions from data manager, and works with CSV file.
+from data_manager import add_bike, view_all_bikes, update_mileage  # import bike functions from data_manager
 
 def display_menu(user_name):
     print ("-------------------------")
