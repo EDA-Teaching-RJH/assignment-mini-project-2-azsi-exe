@@ -70,7 +70,18 @@ def main():
                     print("Registration:", bikes[i][0], "| Brand:", bikes[i][1], "| Model:", bikes[i][2], "| Mileage:", bikes[i][3])
                     
         elif choice == "5":
-            print("Update mileage selected")
+            print("\n--- UPDATE MILEAGE ---")
+
+            registration = input("Please input the reg of the bike you would like to update: ").strip().upper() # Asks user which bike they want to update
+            new_mileage = input("Enter new mileage: ").strip()
+
+            updated = update_mileage(registration, new_mileage) # Calls the function from data manager file
+
+            if updated:
+                print("Mileage updated successfully!")
+            else:
+                print("No bike found with that registration.")
+                
         elif choice == "6":
             print("Delete bike selected")
         elif choice == "7":
