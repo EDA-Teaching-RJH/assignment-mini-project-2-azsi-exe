@@ -37,3 +37,26 @@ def update_mileage(registration, new_mileage): # This function updates the milea
             writer.writerow(row)
 
     return found
+
+def delete_bike(registration): # This function removes a bike from the csv file
+    bikes = [] 
+    found = False 
+
+    with open("MotoLog/bikelog.csv", "r") as file:
+        reader = csv.reader(file)
+
+        for row in reader: # Skips the bike the user wants to delete
+            if row[0] == registration:
+                found = True
+                continue 
+
+            bikes.append(row)  # Keeps all other rows
+
+    with open("MotoLog/bikelog.csv", "w", newline="") as file: # Rewrite the file with remaining bikes
+        writer = csv.writer(file)
+
+        for row in bikes:
+            writer.writerow(row)
+
+    return found
+

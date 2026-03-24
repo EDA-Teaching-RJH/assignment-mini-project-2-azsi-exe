@@ -1,4 +1,4 @@
-from data_manager import add_bike, view_all_bikes, update_mileage  # import bike functions from data_manager
+from data_manager import add_bike, view_all_bikes, update_mileage, delete_bike  # Imports bike functions from data_manager file
 
 def display_menu(user_name):
     print ("-------------------------")
@@ -95,7 +95,39 @@ def main():
                     print("Mileage updated successfully!")
 
         elif choice == "6":
-            print("Delete bike selected")
+            print("\n--- DELETE BIKE ---")
+
+            registration = input("Enter registration: ").strip().upper()
+
+            bikes = get_all_bikes()
+            found = False
+
+            for i in range(1, len(bikes)): # Find bike details and display for user to confirm
+                if bikes[i][0] == registration:
+                    print("\nBike found:")
+                    print(
+                        bikes[i][0], "|",
+                        bikes[i][1], "|",
+                        bikes[i][2], "|",
+                        bikes[i][3]
+                    )
+                    found = True
+                    break
+
+            if not found:
+                print("No bike found with that registration.")
+
+            else:
+                confirm = input("\nProceed with deleting this bike? (Y/N): ").strip().lower()
+
+                if confirm == "Y":
+                    deleted = delete_bike(registration)
+
+                    if deleted:
+                        print("Bike deleted successfully!")
+                else:
+                    print("Deletion cancelled.")
+
         elif choice == "7":
             print("Service analytics selected")
         elif choice == "8":
