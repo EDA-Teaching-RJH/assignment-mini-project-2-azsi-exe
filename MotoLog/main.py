@@ -72,16 +72,28 @@ def main():
         elif choice == "5":
             print("\n--- UPDATE MILEAGE ---")
 
-            registration = input("Please input the reg of the bike you would like to update: ").strip().upper() # Asks user which bike they want to update
-            new_mileage = input("Enter new mileage: ").strip()
+            registration = input("Enter registration: ").strip().upper()
 
-            updated = update_mileage(registration, new_mileage) # Calls the function from data manager file
+            bikes = view_all_bikes()
 
-            if updated:
-                print("Mileage updated successfully!")
-            else:
+            found = False  # Check if the bike exists
+
+            for i in range(1, len(bikes)): # Loop through bikes to check if registration exists (Skips the header again)
+                if bikes[i][0] == registration:
+                    found = True
+                    break
+
+            if not found:
                 print("No bike found with that registration.")
-                
+    
+            else:
+                new_mileage = input("Enter new mileage: ").strip()
+
+                updated = update_mileage(registration, new_mileage)
+
+                if updated:
+                    print("Mileage updated successfully!")
+
         elif choice == "6":
             print("Delete bike selected")
         elif choice == "7":
