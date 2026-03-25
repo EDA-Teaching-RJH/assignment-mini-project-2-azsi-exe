@@ -9,7 +9,7 @@ class Vehicle: # Parent class for general vehicle details
 class Motorbike(Vehicle): # Child class that inherits from Vehicle class
 
     def __init__(self, registration, brand, model, mileage): # Calls the parent class constructor first
-        super().__init__(registration, brand, model)
+        super().__init__(registration, brand, model) # Calls the parent class constructor
 
         self.mileage = mileage # Stores the motorbike specific information
 
