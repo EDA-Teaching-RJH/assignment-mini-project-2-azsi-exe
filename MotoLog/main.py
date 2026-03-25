@@ -1,4 +1,5 @@
 from data_manager import add_bike, view_all_bikes, update_mileage, delete_bike, add_service_record, view_service_analytics  # Imports bike functions from data_manager file
+from bike_models import Motorbike
 import re  # Regular expressions
 
 def is_valid_registration(reg): # Checks reg plate format. e.g. AB12 CDE
@@ -51,9 +52,12 @@ def main():
             if not is_valid_registration(registration):
                 print("Invalid registration format. Please adhere to the AB12 CDE format.")
             else:
-                add_bike(registration, brand, model, mileage)
-                print("Motorbike added successfully!")
+                new_bike = Motorbike(registration, brand, model, mileage)# Creates a Motorbike object using the class
 
+                add_bike(new_bike.registration, new_bike.brand, new_bike.model, new_bike.mileage) # Saves object data into the CSV file
+
+                print("Motorbike added successfully!")
+                print("Bike added:", new_bike.display_bike())
         elif choice == "2":
             print("\n--- LOG SERVICE RECORD ---")
         
