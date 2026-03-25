@@ -168,7 +168,7 @@ def main():
             else:
                 confirm = input("\nProceed with deleting this bike? (Y/N): ").strip().lower()
 
-                if confirm == "Y":
+                if confirm == "y" or confirm == "yes":
                     deleted = delete_bike(registration)
 
                     if deleted:
