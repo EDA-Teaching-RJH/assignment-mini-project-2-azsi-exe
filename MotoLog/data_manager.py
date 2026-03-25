@@ -60,3 +60,8 @@ def delete_bike(registration): # This function removes a bike from the csv file
 
     return found
 
+def add_service_record(registration, date, service, cost): # This function allows users to save a service record into the new services CSV file
+    with open("MotoLog/services.csv", "a", newline="") as file: # a = add new row
+        writer = csv.writer(file)
+        writer.writerow([registration, date, service, cost]) # One service record = one row
+

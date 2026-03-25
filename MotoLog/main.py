@@ -1,4 +1,4 @@
-from data_manager import add_bike, view_all_bikes, update_mileage, delete_bike  # Imports bike functions from data_manager file
+from data_manager import add_bike, view_all_bikes, update_mileage, delete_bike, add_service_record  # Imports bike functions from data_manager file
 
 def display_menu(user_name):
     print ("-------------------------")
@@ -38,7 +38,36 @@ def main():
             print("Motorbike added sucessfully!")
 
         elif choice == "2":
-            print("Log service record selected")
+            print("\n--- LOG SERVICE RECORD ---")
+        
+            registration = input("Enter registration: ").strip().upper()
+
+            bikes = view_all_bikes()
+            found = False
+
+            for i in range(1, len(bikes)): # Checks if the bike exists before asking for service details.
+                if bikes[i][0] == registration:
+                    print("\nBike found:")
+                    print(bikes[i][0], "|", bikes[i][1], "|",bikes[i][2], "|", bikes[i][3])
+                    found = True
+                    break
+
+            if not found:
+                print("No bike found with that registration.")
+
+            else: # Only ask for service info if the bike exists
+                date = input("Enter service date (DD/MM/YYYY): ").strip()
+                service = input("Enter service type: ").strip().title()
+                cost = input("Enter the cost of service: ").strip()
+
+                confirm = input("Are these details correct? (yes/no): ").strip().lower()
+
+                if confirm == "yes":
+                    add_service_record(registration, date, service, cost)
+                    print("Service record added successfully!")
+                else:
+                    print("Service record cancelled.")
+
         elif choice == "3":
             print("\n--- SEARCH BIKE ---")
 
@@ -105,12 +134,7 @@ def main():
             for i in range(1, len(bikes)): # Find bike details and display for user to confirm
                 if bikes[i][0] == registration:
                     print("\nBike found:")
-                    print(
-                        bikes[i][0], "|",
-                        bikes[i][1], "|",
-                        bikes[i][2], "|",
-                        bikes[i][3]
-                    )
+                    print(bikes[i][0], "|", bikes[i][1], "|", bikes[i][2], "|",bikes[i][3])
                     found = True
                     break
 
