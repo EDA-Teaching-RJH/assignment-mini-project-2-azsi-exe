@@ -153,12 +153,18 @@ def main():
                     print("Deletion cancelled.")
 
         elif choice == "7":
-            print("Service analytics selected")
-        elif choice == "8":
-            print("Goodbye!")
-            break
-        else:
-            print("Invalid choice. Please try again.")
+            print("\n--- SERVICE ANALYTICS ---")
+
+            result = view_service_analytics() 
+
+            total = result[0]  # total number of services
+            average = result[1]  # average service cost
+
+            if total == 0:
+                print("No service records found.")
+            else:
+                print("Total services:", total)
+                print("Average cost: £", round(average, 2))
 
 if __name__ == "__main__":
     main()
