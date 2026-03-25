@@ -189,6 +189,13 @@ def main():
             else:
                 print("Total services:", total)
                 print("Average cost: £", round(average, 2))
+        
+        elif choice == "8":
+            print("Goodbye!")
+            break
+
+        else:
+            print("Invalid choice. Please try again.")
 
 if __name__ == "__main__":
     main()
