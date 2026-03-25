@@ -20,3 +20,21 @@ def test_update_mileage():
     assert updated == True # Checks if the update was successful
 
     assert bikes[-1][3] == "800" # Check the mileage was actually changed
+
+# TEST No.3
+def test_delete_bike():
+    add_bike("TEST03", "Suzuki", "GSXR", "200")
+
+    deleted = delete_bike("TEST03")
+
+    bikes = view_all_bikes()
+
+    assert deleted == True # Check that the delete function returned True
+
+    found = False
+
+    for bike in bikes: 
+        if bike[0] == "TEST03":
+            found = True # If found, mark as True
+
+    assert found == False # The bike should NOT be found after deleting  
