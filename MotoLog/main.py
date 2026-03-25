@@ -1,4 +1,19 @@
-from data_manager import add_bike, view_all_bikes, update_mileage, delete_bike, add_service_record  # Imports bike functions from data_manager file
+from data_manager import add_bike, view_all_bikes, update_mileage, delete_bike, add_service_record, view_service_analytics  # Imports bike functions from data_manager file
+import re  # Regular expressions
+
+def is_valid_registration(reg): # Checks reg plate format. e.g. AB12 CDE
+    pattern = r"^[A-Z]{2}[0-9]{2}\s[A-Z]{3}$"
+    if re.match(pattern, reg):
+        return True
+    else:
+        return False
+
+def is_valid_date(date): # This function checks if the date is in the DD/MM/YYYY format.
+    pattern = r"^\d{2}/\d{2}/\d{4}$"
+    if re.match(pattern, date):
+        return True
+    else:
+        return False
 
 def display_menu(user_name):
     print ("-------------------------")
@@ -33,9 +48,11 @@ def main():
             model = input("Enter model: ").strip()
             mileage = input("Enter mileage: ").strip()
 
-            add_bike(registration, brand, model, mileage) # Calls add bike function to save bike
-
-            print("Motorbike added sucessfully!")
+            if not is_valid_registration(registration):
+                print("Invalid registration format. Please adhere to the AB12 CDE format.")
+            else:
+                add_bike(registration, brand, model, mileage)
+                print("Motorbike added successfully!")
 
         elif choice == "2":
             print("\n--- LOG SERVICE RECORD ---")
@@ -55,18 +72,21 @@ def main():
             if not found:
                 print("No bike found with that registration.")
 
-            else: # Only ask for service info if the bike exists
+            else: # Only asks for service info if the bike actually exists on record.
                 date = input("Enter service date (DD/MM/YYYY): ").strip()
                 service = input("Enter service type: ").strip().title()
                 cost = input("Enter the cost of service: ").strip()
 
-                confirm = input("Are these details correct? (yes/no): ").strip().lower()
-
-                if confirm == "yes":
-                    add_service_record(registration, date, service, cost)
-                    print("Service record added successfully!")
+                if not is_valid_date(date):
+                    print("Invalid date format. Use DD/MM/YYYY")
                 else:
-                    print("Service record cancelled.")
+                    confirm = input("Are these details correct? (yes/no): ").strip().lower()
+
+                    if confirm == "yes" or confirm == "y":
+                        add_service_record(registration, date, service, cost)
+                        print("Service record added successfully!")
+                    else:
+                        print("Service record cancelled.")
 
         elif choice == "3":
             print("\n--- SEARCH BIKE ---")
